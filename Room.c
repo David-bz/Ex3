@@ -48,3 +48,32 @@ MtmErrorCode reset_room(Room room){
     free(room->working_hours);
     return MTM_SUCCESS;
 }
+
+Room copy_room(Room room){
+    Room new_room=(Room)malloc(sizeof(*new_room));
+    if(!new_room){ return NULL; }
+    new_room->email=room->email;
+    new_room->id=room->id;
+    new_room->difficulty=room->difficulty;
+    new_room->num_of_people=room->num_of_people;
+    new_room->price=room->price;
+    new_room->working_hours=stringDuplicate(room->working_hours);
+    if(!new_room->working_hours){
+        free(new_room);
+        return NULL; }
+    return new_room;
+}
+
+void destroy_room(Room room){
+    reset_room(room);
+    free(room);
+}
+
+int compare_rooms(Room room1,Room room2){
+    if(room1->id>room2->id){
+        return 1;
+    } else if (room1->id<room2->id){
+        return -1;
+    }
+    return 0;
+}
