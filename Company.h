@@ -15,6 +15,7 @@ typedef struct company* Company;
 MtmErrorCode init_company(Company company,char* email,TechnionFaculty faculty);
 MtmErrorCode reset_company(Company company);
 
+/***** check update on github */
 
 Company copy_company(Company company);
 void destroy_company(Company company);
